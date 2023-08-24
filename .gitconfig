@@ -1,0 +1,7 @@
+[user]
+	name = malijah
+	email = 41331314+Malijah-C@users.noreply.github.com
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /Users/maliek/.gitignore_global
