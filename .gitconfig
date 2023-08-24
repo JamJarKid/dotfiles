@@ -4,4 +4,4 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = /Users/maliek/.gitignore_global
+	excludesfile = ~/.gitignore_global
