@@ -108,5 +108,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
 alias chrome="open -a 'Google Chrome'"
+alias python="python3"
+alias gcc="gcc-13"
+alias g++="g++-13"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # MacOS with Homebrew
+  export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+fi
+export MODULAR_HOME="/Users/maliek/.modular"
+export PATH="/Users/maliek/.modular/pkg/packages.modular.com_mojo/bin:$PATH"

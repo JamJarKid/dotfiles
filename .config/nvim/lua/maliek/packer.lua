@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use 'mfussenegger/nvim-lint'
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
 	  -- or                            , branch = '0.1.x',
@@ -34,10 +35,12 @@ return require('packer').startup(function(use)
       }
       
       use("theprimeagen/harpoon")
+      use("christoomey/vim-tmux-navigator")
+
 
       use {
           'VonHeikemen/lsp-zero.nvim',
-          branch = 'v1.x',
+          branch = 'v2.x',
           requires = {
               -- LSP Support
               {'neovim/nvim-lspconfig'},
