@@ -2,7 +2,9 @@ require("maliek")
 local lspconfig = require('lspconfig')
 
 lspconfig.pyright.setup({})
-lspconfig.clangd.setup({})
+lspconfig.clangd.setup({
+    cmd = {'/opt/homebrew/opt/llvm/bin/clangd', '--clang-tidy' }
+})
 lspconfig.tsserver.setup({})
 lspconfig.mojo.setup({})
 
@@ -24,19 +26,11 @@ lspconfig.lua_ls.setup {
 
 require('lint').linters_by_ft = {
     python = {'flake8'},
-    cpp = {'cpplint'},
     javascript = {'eslint'},
     typescript = {'eslint'},
     javascriptreact = {'eslint'},
     typescriptreact = {'eslint'},
 }
-
-vim.api.nvim_create_autocmd({"BufWritePost", "BufEnter"}, {
-    pattern = {'*.py', '*.cpp', '*.js', '*.ts', '*.jsx', '*.tsx'},
-    callback = function()
-        require('lint').try_lint()
-    end
-})
 
 vim.api.nvim_create_autocmd('BufWritePre', {
     pattern = '*.py',
@@ -44,4 +38,23 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         vim.cmd('!black %')
     end
 })
+
+function CompileCpp()
+    local dir = vim.fn.expand('%:p:h')
+    local output = vim.fn.expand('%:t:r')
+    local cmd = string.format("g++-13 -std=c++23 -fdiagnostics-color=always -g -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -Werror %s/*.cpp -o %s/%s", dir, dir, output)
+    vim.api.nvim_command('! '..cmd)
+end
+
+vim.api.nvim_create_user_command('CppCompile', CompileCpp, {})
+
+function CompileCppFile()
+    local file = vim.fn.expand('%')
+    local dir = vim.fn.expand('%:p:h')
+    local output = vim.fn.expand('%:t:r')
+    local cmd = string.format("g++-13 -std=c++23 -g -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -Werror %s -o %s/%s", file, dir, output)
+    vim.api.nvim_command('! '..cmd)
+end
+
+vim.api.nvim_create_user_command('CppCompilef', CompileCppFile, {})
 
