@@ -5,11 +5,11 @@ require('rose-pine').setup({
     dark_variant = 'main',
     bold_vert_split = false,
     dim_nc_background = false,
-    disable_background = false,
+    disable_background = true,
     disable_float_background = false,
     disable_italics = false,
-
     --- @usage string hex value or named color from rosepinetheme.com/palette
+
     groups = {
         background = 'base',
         background_nc = '_experimental_nc',
@@ -23,7 +23,7 @@ require('rose-pine').setup({
         error = 'love',
         hint = 'iris',
         info = 'foam',
-        warn = 'gold',
+        warn = 'Iris',
 
         headings = {
             h1 = 'iris',
