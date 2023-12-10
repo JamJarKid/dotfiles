@@ -29,4 +29,3 @@ vim.g.mapleader = " "
 
 opt.splitright = true
 opt.splitbelow = true
-
