@@ -50,7 +50,7 @@ lspconfig.cssls.setup({
                 ['no-duplicate-selectors'] = true,
             },
             format = {
-                enable = true,
+                enable = false,
                 indentSize = 4,
                 insertSpaces = true,
             },
