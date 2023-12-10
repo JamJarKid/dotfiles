@@ -7,6 +7,9 @@ require("maliek.plugins.lsp")
 require("maliek.plugins.lint")
 require("maliek.plugins.telescope")
 require("maliek.plugins.treesitter")
+require("maliek.plugins.lualine")
+require("maliek.plugins.nvim-cmp")
+
 
 vim.api.nvim_create_user_command('CppCompilef', cppfuncs.CompileFile, {})
 vim.api.nvim_create_user_command('CppCompile', cppfuncs.Compile, {})
