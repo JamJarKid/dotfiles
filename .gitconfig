@@ -5,3 +5,5 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore_global
+[status]
+	showUntrackedFiles = no
