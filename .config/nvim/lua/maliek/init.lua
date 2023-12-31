@@ -1,7 +1,6 @@
 require("maliek.core.options")
 require("maliek.core.keymaps")
 require("maliek.core.colorscheme")
-local cppfuncs = require("maliek.core.cppfunctions")
 require("maliek.plugins.harpoon")
 require("maliek.plugins.lsp")
 require("maliek.plugins.lint")
@@ -10,6 +9,6 @@ require("maliek.plugins.treesitter")
 require("maliek.plugins.lualine")
 require("maliek.plugins.nvim-cmp")
 
-
+local cppfuncs = require("maliek.core.cppfunctions")
 vim.api.nvim_create_user_command('CppCompilef', cppfuncs.CompileFile, {})
 vim.api.nvim_create_user_command('CppCompile', cppfuncs.Compile, {})

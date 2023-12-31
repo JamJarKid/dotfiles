@@ -5,11 +5,14 @@ vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
-
     use 'wbthomason/packer.nvim'
     use("theprimeagen/harpoon")
     use("christoomey/vim-tmux-navigator")
     use 'mfussenegger/nvim-lint'
+    use {
+        'bluz71/vim-nightfly-colors',
+        as = 'nightfly'
+    }
     use { 'nvim-lualine/lualine.nvim' }
     use { 'nvim-tree/nvim-web-devicons' }
     use {
@@ -17,14 +20,6 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-
-    use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    })
 
     use {
         'nvim-treesitter/nvim-treesitter',
