@@ -5,5 +5,5 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = vim
+	pager = less
 	editor = vim
