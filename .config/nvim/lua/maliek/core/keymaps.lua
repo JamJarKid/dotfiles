@@ -13,6 +13,7 @@ remap("n", "<leader>sx", ":close<CR>")
 remap("n", "<leader>y", "\"+y")
 remap("v", "<leader>y", "\"+y")
 remap("n", "<leader>Y", "\"+Y")
+remap("n", "<leader>p", "\"+p")
 
 remap("n", "<C-d>", "<C-d>zz")
 remap("n", "<C-u>", "<C-u>zz")
