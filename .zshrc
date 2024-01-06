@@ -11,10 +11,9 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
 alias chrome="open -a 'Google Chrome'"
-alias python="/usr/local/bin/python3.10"
-alias pip="/usr/local/bin/pip3.10"
 alias gcc="gcc-13"
 alias g++="g++-13"
+alias python="python3"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
