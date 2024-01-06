@@ -10,9 +10,12 @@ remap("n", "<leader>sv", "<C-w>v")
 remap("n", "<leader>sh", "<C-w>s")
 remap("n", "<leader>sx", ":close<CR>")
 
-remap("n", "<leader>y", "+y")
-remap("v", "<leader>y", "+y")
-remap("n", "<leader>Y", "+Y")
+remap("n", "<leader>y", "\"+y")
+remap("v", "<leader>y", "\"+y")
+remap("n", "<leader>Y", "\"+Y")
 
 remap("n", "<C-d>", "<C-d>zz")
 remap("n", "<C-u>", "<C-u>zz")
+
+remap("v", "J", ":m '>+1<CR>gv=gv")
+remap("v", "K", ":m '<-2<CR>gv=gv")
