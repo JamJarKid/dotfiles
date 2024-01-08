@@ -1,23 +1,19 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
-vim.cmd.packadd('packer.nvim')
-
 return require('packer').startup(function(use)
-    -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    use("theprimeagen/harpoon")
-    use("christoomey/vim-tmux-navigator")
+    use 'theprimeagen/harpoon'
+    use 'christoomey/vim-tmux-navigator'
     use 'mfussenegger/nvim-lint'
-    use {
-        'bluz71/vim-nightfly-colors',
-        as = 'nightfly'
-    }
-    use { 'nvim-lualine/lualine.nvim' }
-    use { 'nvim-tree/nvim-web-devicons' }
+    use 'nvim-lualine/lualine.nvim'
+    use 'nvim-tree/nvim-web-devicons'
+
     use {
         'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+
+    use {
+        'bluz71/vim-nightfly-colors',
+        as = 'nightfly'
     }
 
     use {
@@ -25,7 +21,25 @@ return require('packer').startup(function(use)
         run = function()
             local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
             ts_update()
-        end, }
+        end,
+    }
+
+    use {
+        'danymat/neogen',
+        config = function()
+            require('neogen').setup({
+                snippet_engine = "luasnip",
+                languages = {
+                    python = {
+                        template = {
+                            annotation_convetion = "reST"
+                        }
+                    },
+                }
+            })
+        end,
+        requires = "nvim-treesitter/nvim-treesitter",
+    }
 
     use {
         'VonHeikemen/lsp-zero.nvim',
