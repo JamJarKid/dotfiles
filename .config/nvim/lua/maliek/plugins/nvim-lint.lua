@@ -1,3 +1,5 @@
+return {'mfussenegger/nvim-lint',
+config = function()
 require('lint').linters_by_ft = {
     python = { 'flake8' },
     javascript = { 'eslint' },
@@ -43,3 +45,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.css", "*.json", "*.md" },
     command = "silent !prettier --write %",
 })
+end
+}
+
+
+ 
