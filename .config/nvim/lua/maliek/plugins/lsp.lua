@@ -24,7 +24,19 @@ end)
 
 lsp.setup()
 
-lspconfig.pyright.setup({})
+lspconfig.pyright.setup({
+    settings = {
+        pyright = { autoImportCompletion = true, disableTaggedHints = false },
+        python = {
+            analysis = {
+                autoSearchPahts = true,
+                diagnosticMode = 'openfilesOnly',
+                useLibraryCodeforTypes = true,
+                typeCheckingMode = 'strict',
+            }
+        }
+    }
+})
 lspconfig.tsserver.setup({})
 lspconfig.mojo.setup({})
 lspconfig.clangd.setup({
