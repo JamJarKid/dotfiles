@@ -7,3 +7,5 @@
 	excludesfile = ~/.gitignore_global
 	pager = less
 	editor = vim
+[push]
+	default = current
