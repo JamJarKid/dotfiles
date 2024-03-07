@@ -17,6 +17,7 @@ alias python="python3"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit -m"
+alias venv="source ./venv/bin/activate"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
