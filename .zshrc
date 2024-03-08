@@ -23,8 +23,8 @@ alias venv="source ./venv/bin/activate"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # MacOS with Homebrew
-  export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+  export PATH="/opt/homebrew/bin:/usr/local/bin:/Users/maliek/.cargo/bin:$PATH"
+  export TMS_CONFIG_FILE="/Users/maliek/.config/tms/config.toml"
 fi
 export MODULAR_HOME="/Users/maliek/.modular"
 export PATH="/Users/maliek/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
