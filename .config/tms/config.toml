@@ -1,3 +1,7 @@
 [[search_dirs]]
 path = "/Users/maliek/projects"
 depth = 10
+
+[[search_dirs]]
+path = "/Users/maliek/.dotfiles"
+depth = 10
