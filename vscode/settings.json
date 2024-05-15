@@ -1,0 +1,51 @@
+{
+    // Personal
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c17",
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Fira Code",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+    },
+    "notebook.formatOnSave.enabled": true,
+    
+    //Work
+    "editor.rulers": [
+        80
+    ],
+    "editor.autoClosingBrackets": "never" ,
+    "editor.lineNumbers": "relative",
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.minimap.enabled": false,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.semanticHighlighting.enabled": true,
+    "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "right",
+    "workbench.editor.enablePreview": false,
+    "workbench.activityBar.location": "top",
+    "workbench.statusBar.visible": false,
+    "window.zoomLevel": 1,
+    "files.autoSave": "afterDelay",
+    "search.useGlobalIgnoreFiles": true,
+    "search.useParentIgnoreFiles": true,
+    "breadcrumbs.enabled": false,
+    "workbench.colorTheme": "Rosé Pine",
+    "[python]": {
+        "editor.formatOnType": true,
+    },
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.diagnosticMode":"openFilesOnly",
+    "python.analysis.typeCheckingMode": "strict",
+
+    // Windows Settings
+    //"terminal.editor.defaultProfile.windows": "Git Bash",
+    //"window.menuBarVisibility": "compact",
+}
