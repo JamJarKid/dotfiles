@@ -27,7 +27,7 @@ return {
             ensure_installed = {
                 'pyright',
                 'lua_ls',
-                'tsserver',
+                'ts_ls',
                 'clangd',
                 'html',
                 'cssls',
@@ -64,7 +64,7 @@ return {
                 }
             }
         })
-        lspconfig.tsserver.setup({})
+        lspconfig.ts_ls.setup({})
         lspconfig.mojo.setup({})
         lspconfig.clangd.setup({
             cmd = { '/opt/homebrew/opt/llvm/bin/clangd', '--clang-tidy' }
