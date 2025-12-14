@@ -39,11 +39,21 @@
     "workbench.colorTheme": "Rosé Pine",
     "[python]": {
         "editor.formatOnType": true,
+        
     },
     "python.analysis.autoFormatStrings": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.diagnosticMode":"openFilesOnly",
-    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.typeCheckingMode": "basic",
+    
+    "cloudcode.updateChannel": "Insiders",
+    "geminicodeassist.project": "eco-crow-427814-f2",
+    "geminicodeassist.updateChannel": "Insiders",
+    "jupyter.askForKernelRestart": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.editor.empty.hint": "hidden",
+    "claudeCode.preferredLocation": "panel",
+    "security.workspace.trust.untrustedFiles": "open",
 
     // Windows Settings
     //"terminal.editor.defaultProfile.windows": "Git Bash",

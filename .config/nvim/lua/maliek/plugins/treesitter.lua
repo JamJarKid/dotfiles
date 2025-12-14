@@ -4,7 +4,7 @@ return {
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
         require 'nvim-treesitter.configs'.setup {
             -- A list of parser names, or "all"
-            ensure_installed = { "vimdoc", "javascript", "typescript", "python", "c", "lua", "cpp", "html", "css" },
+            ensure_installed = { "vimdoc", "javascript", "typescript", "python", "c", "lua", "cpp", "html", "css","json", "markdown" },
 
             sync_install = false,
 

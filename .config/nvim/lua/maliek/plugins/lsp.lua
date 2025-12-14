@@ -1,27 +1,34 @@
 return {
-    'VonHeikemen/lsp-zero.nvim',
+    'neovim/nvim-lspconfig',
     dependencies = {
-        -- LSP Support
-        'neovim/nvim-lspconfig',
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
-        -- Autocompletion
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'saadparwaiz1/cmp_luasnip',
-        'hrsh7th/cmp-nvim-lsp',
-        -- Snippets
-        'L3MON4D3/LuaSnip',
+        'saghen/blink.cmp',
     },
     config = function()
-        local lsp_zero = require('lsp-zero')
-        local lspconfig = require('lspconfig')
+        -- 1. THE CAPABILITIES (The glue between LSP and Blink)
+        -- We get these from Blink and pass them to every server
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        -- 2. THE KEYMAPS (Modern LspAttach way)
+        -- This runs every time an LSP connects to a buffer
+        vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+                if not client then return end
 
-        lsp_zero.preset("recommended")
+                -- Helper to create mappings
+                local opts = { buffer = args.buf, remap = false }
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+                vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+                -- Optional: Rename variable
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+            end,
+        })
+
+        -- 3. SETUP MASON & HANDLERS
         require('mason').setup({})
         require('mason-lspconfig').setup({
             ensure_installed = {
@@ -31,105 +38,98 @@ return {
                 'clangd',
                 'html',
                 'cssls',
+                'emmet_language_server', -- Added this for your HTML magic!
             },
             handlers = {
-                lsp_zero.default_setup,
+                -- The default handler: setup any server not listed below
+                function(server_name)
+                    require('lspconfig')[server_name].setup({
+                        capabilities = capabilities -- Pass Blink capabilities here
+                    })
+                end,
+
+                -- CUSTOM HANDLERS (Don't forget to pass capabilities to these too!)
+
+                pyright = function()
+                    require('lspconfig').pyright.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            pyright = {
+                                autoImportCompletion = true,
+                                disableTaggedHints = false
+                            },
+                            python = {
+                                analysis = {
+                                    autoSearchPaths = true,
+                                    diagnosticMode = 'openFilesOnly',
+                                    useLibraryCodeForTypes = true,
+                                    typeCheckingMode = 'strict',
+                                }
+                            }
+                        }
+                    })
+                end,
+
+                clangd = function()
+                    require('lspconfig').clangd.setup({
+                        capabilities = capabilities,
+                        cmd = { '/opt/homebrew/opt/llvm/bin/clangd', '--clang-tidy' }
+                    })
+                end,
+
+                html = function()
+                    require('lspconfig').html.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            html = {
+                                format = { enable = true },
+                                validate = { scripts = true, styles = true },
+                            },
+                        },
+                    })
+                end,
+
+                cssls = function()
+                    require('lspconfig').cssls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            css = {
+                                validate = true,
+                                lint = {
+                                    ['block-no-empty'] = true,
+                                    ['color-no-invalid-hex'] = true,
+                                    ['declaration-block-trailing-semicolon'] = "always",
+                                    ['no-duplicate-selectors'] = true,
+                                },
+                                format = { enable = false }, -- We let Prettier handle this
+                            },
+                        },
+                    })
+                end,
+
                 lua_ls = function()
-                    local lua_opts = lsp_zero.nvim_lua_ls()
-                    require('lspconfig').lua_ls.setup(lua_opts)
+                    local runtime_path = vim.split(package.path, ';')
+                    table.insert(runtime_path, "lua/?.lua")
+                    table.insert(runtime_path, "lua/?/init.lua")
+
+                    require('lspconfig').lua_ls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            Lua = {
+                                runtime = { version = 'LuaJIT', path = runtime_path },
+                                diagnostics = { globals = { 'vim' } },
+                                workspace = {
+                                    library = vim.api.nvim_get_runtime_file("", true),
+                                    maxPreload = 10000,
+                                    preloadFileSize = 1000,
+                                    checkThirdParty = false,
+                                },
+                                telemetry = { enable = false },
+                            },
+                        },
+                    })
                 end,
             },
         })
-
-        lsp_zero.on_attach(function(client, bufnr)
-            local opts = { buffer = bufnr, remap = false }
-            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-        end)
-
-        lsp_zero.setup()
-
-        lspconfig.pyright.setup({
-            settings = {
-                pyright = { autoImportCompletion = true, disableTaggedHints = false },
-                python = {
-                    analysis = {
-                        autoSearchPahts = true,
-                        diagnosticMode = 'openfilesOnly',
-                        useLibraryCodeforTypes = true,
-                        typeCheckingMode = 'strict',
-                    }
-                }
-            }
-        })
-        lspconfig.ts_ls.setup({})
-        lspconfig.mojo.setup({})
-        lspconfig.clangd.setup({
-            cmd = { '/opt/homebrew/opt/llvm/bin/clangd', '--clang-tidy' }
-        })
-
-        lspconfig.html.setup({
-            capabilities = lsp_zero.capabilities,
-            settings = {
-                html = {
-                    format = {
-                        enable = true,
-                    },
-                    validate = {
-                        scripts = true,
-                        styles = true,
-                    },
-                },
-            },
-        })
-
-        lspconfig.cssls.setup({
-            capabilities = lsp_zero.capabilities,
-            settings = {
-                css = {
-                    validate = true,
-                    lint = {
-                        ['block-no-empty'] = true,
-                        ['color-no-invalid-hex'] = true,
-                        ['declaration-block-trailing-semicolon'] = "always",
-                        ['no-duplicate-selectors'] = true,
-                    },
-                    format = {
-                        enable = false,
-                        indentSize = 4,
-                        insertSpaces = true,
-                    },
-                },
-            },
-        })
-
-
-        local runtime_path = vim.split(package.path, ';')
-        table.insert(runtime_path, "lua/?.lua")
-        table.insert(runtime_path, "lua/?/init.lua")
-
-        lspconfig.lua_ls.setup {
-            settings = {
-                Lua = {
-                    runtime = {
-                        version = 'LuaJIT',
-                        path = runtime_path,
-                    },
-                    diagnostics = {
-                        globals = { 'vim' },
-                    },
-                    workspace = {
-                        library = vim.api.nvim_get_runtime_file("", true),
-                        maxPreload = 10000,
-                        preloadFileSize = 1000,
-                    },
-                    telemetry = {
-                        enable = false,
-                    },
-                },
-            },
-        }
     end
 }
