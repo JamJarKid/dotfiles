@@ -16,7 +16,7 @@ clone_dotfiles() {
     cd ./dotfiles 
 }
 
-install_homebrew()
-clone_dotfiles()
+install_homebrew
+clone_dotfiles
 
 
