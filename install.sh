@@ -20,7 +20,7 @@ do
     else
         brew install --cask $program
         open -a $program
-        read -n 1 -s -r -p
+        read -n 1 -s -r -p "Press Any Key after you finish setting-up the current app"
     fi
 done
     
