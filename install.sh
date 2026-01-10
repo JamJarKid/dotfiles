@@ -1,4 +1,4 @@
-#bin/bash
+#!bin/bash
 
 casks=(
     "iterm2"
@@ -15,11 +15,12 @@ casks=(
 
 for program in "${casks[@]}"
 do
-    if brew list $program; then
+    if brew list --cask $program > /dev/null 2>&1; then
         echo "$program installed"
     else
         brew install --cask $program
         open -a $program
+        read -n 1 -s -r -p
     fi
 done
     
