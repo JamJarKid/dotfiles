@@ -1,7 +1,11 @@
 #!bin/bash
 
+# Housekeeping
+
+mkdir ~/.config
+
 casks=(
-    "iterm2"
+    "ghostty"
     "visual-studio-code"
     "obsidian"
     "figma"
@@ -11,6 +15,8 @@ casks=(
     "adguard"
     "claude"
     "whatsapp"
+    "font-monaspace-nerd-font"
+    "raycast"
     )
 
 for program in "${casks[@]}"
@@ -24,3 +30,11 @@ do
     fi
 done
     
+# ghostty config
+
+mkdir ~/.config/ghostty
+ln -s "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
+
+# karabiner-elements
+
+ln -s "$HOME/dotfiles/.config/karabiner" "$HOME/.config/karabiner" 
