@@ -11,11 +11,12 @@ casks=(
     "adguard"
     )
 
-for program in casks
+for program in "${casks[@]}"
 do
     if brew list $program; then
         echo "$program installed"
     else
         brew install --cask $program
+    fi
 done
     
