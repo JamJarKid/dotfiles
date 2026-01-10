@@ -1,3 +1,3 @@
 # Run this (Mac only)
 
-curl -fsSL https://raw.github.usercontent.com/JamJarKid/dotfiles/refs/heads/main/bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/JamJarKid/dotfiles/main/bootstrap.sh | bash
