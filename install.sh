@@ -7,8 +7,10 @@ casks=(
     "figma"
     "karabiner-elements"
     "miniforge"
-    "chrome"
+    "google-chrome"
     "adguard"
+    "claude"
+    "whatsapp"
     )
 
 for program in "${casks[@]}"
@@ -17,6 +19,7 @@ do
         echo "$program installed"
     else
         brew install --cask $program
+        open -a $program
     fi
 done
     
