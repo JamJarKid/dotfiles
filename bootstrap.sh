@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_homebrew() {
-    if command -v brew; then
+    if command -v brew 2>&1 > /dev/null; then
         echo "Homebrew already installed"
     else
         echo "Installing Homebrew..."
