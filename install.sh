@@ -52,8 +52,9 @@ link_file "$HOME/dotfiles/.config/karabiner" "$HOME/.config/karabiner"
 
 # vscode
 link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
+
 while IFS= read -r ext; do
     echo "installing $ext"
     code --install-extension "$ext"
-done
+done < ./.config/vscode/extensions.txt
 
