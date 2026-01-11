@@ -4,7 +4,7 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git.gitignore_global
 	pager = less
 	editor = vim
 [push]
