@@ -39,16 +39,19 @@ link_file() {
     local dest=$2
     ln -sfn "$src" "$dest"
 }
+# karabiner-elements
+link_file "$HOME/dotfiles/.config/karabiner" "$HOME/.config/karabiner" 
 
 # git
-link_file "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
-link_file "$HOME/dotfiles/.gitignore_global" "$HOME/.gitignore_global"
+link_file "$HOME/dotfiles/.config/git/.gitconfig" "$HOME/.gitconfig"
+link_file "$HOME/dotfiles/.config/git/.gitignore_global" "$HOME/.gitignore_global"
     
 # ghostty config
 link_file "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
 
-# karabiner-elements
-link_file "$HOME/dotfiles/.config/karabiner" "$HOME/.config/karabiner" 
+# zsh
+link_file "$HOME/dotfiles/.config/zsh/.zshrc" "$HOME/.zshrc"
+link_file "$HOME/dotfiles/.config/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 
 # vscode
 link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
