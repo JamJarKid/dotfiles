@@ -2,18 +2,19 @@
 
 # Housekeeping
 
-if [ ! -d ~/.config]; then
+if [ ! -d ~/.config ]; then
     mkdir ~/.config
 else
     echo "~/.config exists skipping creation"
 fi
+    
 casks=(
     "ghostty"
     "visual-studio-code"
     "obsidian"
     "figma"
     "karabiner-elements"
-    "miniforge"
+#    "miniforge"
     "google-chrome"
     "adguard"
     "claude"
@@ -38,7 +39,6 @@ ln -s "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
 ln -s "$HOME/dotfiles/.gitignore_global" "$HOME/.gitignore_global"
     
 # ghostty config
-mkdir ~/.config/ghostty
 ln -s "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
 
 # karabiner-elements
