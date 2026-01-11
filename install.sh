@@ -57,6 +57,8 @@ else
     echo "oh-my-zsh already installed"
 fi
 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 link_file "$HOME/dotfiles/.config/zsh/.zshrc" "$HOME/.zshrc"
 link_file "$HOME/dotfiles/.config/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 
