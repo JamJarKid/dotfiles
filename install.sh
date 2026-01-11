@@ -34,14 +34,21 @@ do
     fi
 done
 
+link_file() {
+    local src=$1
+    local dest=$2
+    ln -sfn "$src" "$dest"
+}
+
 # git
-ln -s "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
-ln -s "$HOME/dotfiles/.gitignore_global" "$HOME/.gitignore_global"
+link_file "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
+link_file "$HOME/dotfiles/.gitignore_global" "$HOME/.gitignore_global"
     
 # ghostty config
-ln -s "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
+link_file "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
 
 # karabiner-elements
-ln -s "$HOME/dotfiles/.config/karabiner" "$HOME/.config/karabiner" 
+link_file "$HOME/dotfiles/.config/karabiner" "$HOME/.config/karabiner" 
 
-
+# vscode
+link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
