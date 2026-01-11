@@ -69,11 +69,20 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+# nvim
+brew install neovim
+link_file  "$HOME/dotfiles/.config/nvim" "$HOME/.config/nvim" 
+
 # vscode
 link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
 
-while IFS= read -r ext; do
-    echo "installing $ext"
-    code --install-extension "$ext"
-done < ./.config/vscode/extensions.txt
+# while IFS= read -r ext; do
+#    echo "installing $ext"
+#    code --install-extension "$ext"
+#done < ./.config/vscode/extensions.txt
+
+# github
+brew install gh
+gh auth login
+
 
