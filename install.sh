@@ -50,6 +50,13 @@ link_file "$HOME/dotfiles/.config/git/.gitignore_global" "$HOME/.gitignore_globa
 link_file "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
 
 # zsh
+if [ ! -d "$HOME/oh-my-zsh" ]
+    echo "installing oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+    echo "oh-my-zsh already installed"
+fi
+
 link_file "$HOME/dotfiles/.config/zsh/.zshrc" "$HOME/.zshrc"
 link_file "$HOME/dotfiles/.config/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 
