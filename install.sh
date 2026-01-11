@@ -50,15 +50,22 @@ link_file "$HOME/dotfiles/.config/git/.gitignore_global" "$HOME/.gitignore_globa
 link_file "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
 
 # zsh
-if [ ! -d "$HOME/oh-my-zsh" ]
+if [ ! -d "$HOME/oh-my-zsh" ]; then
     echo "installing oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
     echo "oh-my-zsh already installed"
 fi
 
 link_file "$HOME/dotfiles/.config/zsh/.zshrc" "$HOME/.zshrc"
 link_file "$HOME/dotfiles/.config/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
+
+git clone https://github.com/jeffreytse/zsh-vi-mode \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # vscode
 link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
