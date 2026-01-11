@@ -7,6 +7,12 @@ if [ ! -d ~/.config ]; then
 else
     echo "~/.config exists skipping creation"
 fi
+
+if [ ! -d ~/projects ]; then
+    mkdir ~/projects
+else
+    echo "~/projects exists skipping creation"
+fi
     
 casks=(
     "ghostty"
@@ -77,6 +83,7 @@ brew install tmux
 link_file "$HOME/dotfiles/.config/tmux" "$HOME/.config/tmux"
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 brew install tmux-sessionizer
+link_file "$HOME/dotfiles/.config/tms" "$HOME/.config/tms"
 
 # vscode
 link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
