@@ -43,8 +43,7 @@ link_file() {
 link_file "$HOME/dotfiles/.config/karabiner" "$HOME/.config/karabiner" 
 
 # git
-link_file "$HOME/dotfiles/.config/git/.gitconfig" "$HOME/.gitconfig"
-link_file "$HOME/dotfiles/.config/git/.gitignore_global" "$HOME/.gitignore_global"
+link_file "$HOME/dotfiles/.config/git" "$HOME/.config/git"
     
 # ghostty config
 link_file "$HOME/dotfiles/.config/ghostty" "$HOME/.config/ghostty"
@@ -72,6 +71,12 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # nvim
 brew install neovim
 link_file  "$HOME/dotfiles/.config/nvim" "$HOME/.config/nvim" 
+
+# tmux
+brew install tmux
+link_file "$HOME/dotfiles/.config/tmux" "$HOME/.config/tmux"
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+brew install tmux-sessionizer
 
 # vscode
 link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
