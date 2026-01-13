@@ -20,13 +20,22 @@ casks=(
     "obsidian"
     "figma"
     "karabiner-elements"
-#    "miniforge"
     "google-chrome"
     "adguard"
     "claude"
     "whatsapp"
-    "font-monaspace-nerd-font"
     "raycast"
+    )
+
+cli_tools=(
+    "miniforge"
+    "node"
+    "neovim"
+    "font-monaspace-nerd-font"
+    "gh"
+    "ollama"
+    "uv"
+    "ruff"
     )
 
 for program in "${casks[@]}"
@@ -76,8 +85,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # nvim
 # node needed for lsps
-brew install node
-brew install neovim
 link_file  "$HOME/dotfiles/.config/nvim" "$HOME/.config/nvim" 
 
 # tmux
@@ -96,7 +103,6 @@ link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Applicati
 #done < ./.config/vscode/extensions.txt
 
 # github
-brew install gh
 gh auth login
 
 

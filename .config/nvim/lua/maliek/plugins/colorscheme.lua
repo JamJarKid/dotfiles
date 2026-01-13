@@ -1,19 +1,11 @@
 return {
-    --    'bluz71/vim-nightfly-guicolors',
-    --    priority = 1000,
-    --    config = function()
-    --        vim.cmd([[colorscheme nightfly]])
-    --        vim.g.nightflyVirtualTextColor = true
-    --    end,
-    --
-
     "rose-pine/neovim",
 
     name = "rose-pine",
     config = function()
         require("rose-pine").setup({
-            variant = "main",      -- auto, main, moon, or dawn
-            dark_variant = "main", -- main, moon, or dawn
+            variant = "dawn",      -- auto, main, moon, or dawn
+            dark_variant = "moon", -- main, moon, or dawn
             dim_inactive_windows = false,
             extend_background_behind_borders = true,
 
@@ -61,6 +53,7 @@ return {
             },
 
             highlight_groups = {
+                ["@lsp.type.namespace"] = { link = "@lsp.type.class" }
                 -- Comment = { fg = "foam" },
                 -- VertSplit = { fg = "muted", bg = "muted" },
             },

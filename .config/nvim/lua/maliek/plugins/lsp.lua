@@ -17,6 +17,10 @@ return {
                 local client = vim.lsp.get_client_by_id(args.data.client_id)
                 if not client then return end
 
+                if client.server_capabilities.semanticTokensProvider then
+                    vim.lsp.semantic_tokens.start(args.buf, client.id)
+                end
+
                 -- Helper to create mappings
                 local opts = { buffer = args.buf, remap = false }
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -32,7 +36,7 @@ return {
         require('mason').setup({})
         require('mason-lspconfig').setup({
             ensure_installed = {
-                'pyright',
+                'basedpyright',
                 'lua_ls',
                 'ts_ls',
                 'clangd',
@@ -50,8 +54,8 @@ return {
 
                 -- CUSTOM HANDLERS (Don't forget to pass capabilities to these too!)
 
-                pyright = function()
-                    require('lspconfig').pyright.setup({
+                basedpyright = function()
+                    require('lspconfig').basedpyright.setup({
                         capabilities = capabilities,
                         settings = {
                             pyright = {
