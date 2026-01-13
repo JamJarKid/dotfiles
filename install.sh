@@ -96,6 +96,9 @@ link_file "$HOME/dotfiles/.config/tms" "$HOME/.config/tms"
 
 # vscode
 link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" 
+# claude MCP
+link_file "$HOME/dotfiles/.config/claude/claude_desktop_config.json" "$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+
 
 # while IFS= read -r ext; do
 #    echo "installing $ext"
@@ -104,5 +107,8 @@ link_file "$HOME/dotfiles/.config/vscode/settings.json" "$HOME/Library/Applicati
 
 # github
 gh auth login
+
+# claude mcp
+npx -y @smithery/cli install mcp-obsidian --client claude --config '{"vaultPath":"/Users/maliek/MP2"}'
 
 
