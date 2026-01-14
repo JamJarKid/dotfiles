@@ -25,6 +25,7 @@ casks=(
     "claude"
     "whatsapp"
     "raycast"
+    "scroll-reverser"
     )
 
 cli_tools=(
