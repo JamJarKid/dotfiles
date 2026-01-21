@@ -1,7 +1,7 @@
 local remap = vim.keymap.set
 vim.g.mapleader = " "
 
-remap("n", "<leader>pv", vim.cmd.Ex)
+remap("n", "<leader>gf", vim.cmd.Ex)
 remap("n", "<leader>chr", '<cmd>!open -a "Google Chrome" %<CR>')
 remap("n", "x", '"_x')
 remap("n", "<leader>o", "o<Esc>", { silent = true, desc = "Insert new line below and exit" })
