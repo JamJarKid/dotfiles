@@ -21,13 +21,11 @@ return {
                     vim.lsp.semantic_tokens.start(args.buf, client.id)
                 end
 
-                -- Helper to create mappings
                 local opts = { buffer = args.buf, remap = false }
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                 vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-                -- Optional: Rename variable
                 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
             end,
         })
@@ -42,17 +40,16 @@ return {
                 'clangd',
                 'html',
                 'cssls',
-                'emmet_language_server', -- Added this for your HTML magic!
+                'emmet_language_server',
+                'jsonls',
+                'yamlls',
             },
             handlers = {
-                -- The default handler: setup any server not listed below
                 function(server_name)
                     require('lspconfig')[server_name].setup({
-                        capabilities = capabilities -- Pass Blink capabilities here
+                        capabilities = capabilities
                     })
                 end,
-
-                -- CUSTOM HANDLERS (Don't forget to pass capabilities to these too!)
 
                 basedpyright = function()
                     require('lspconfig').basedpyright.setup({
@@ -105,7 +102,7 @@ return {
                                     ['declaration-block-trailing-semicolon'] = "always",
                                     ['no-duplicate-selectors'] = true,
                                 },
-                                format = { enable = false }, -- We let Prettier handle this
+                                format = { enable = false },
                             },
                         },
                     })
