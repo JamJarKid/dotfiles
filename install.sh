@@ -37,6 +37,7 @@ cli_tools=(
     "ollama"
     "uv"
     "ruff"
+    "ripgrep"
     )
 
 for program in "${casks[@]}"
