@@ -38,6 +38,8 @@ cli_tools=(
     "uv"
     "ruff"
     "ripgrep"
+    "prettierd"
+    "clang-format"
     )
 
 for program in "${casks[@]}"
